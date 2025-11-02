@@ -51,4 +51,8 @@ if(fs.existsSync('./mpn/deleteme.txt')) {
         }
         console.log('file deleted');
     })
+
 }
+// there is also a short way to write the file using pipe
+// readStream.pipe(writeStream);
+// we can use the above one line code instead of those lines of code
