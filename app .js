@@ -1,13 +1,31 @@
+
 const express = require('express');
+const path = require('path');
+const app = express();
 
-//epress app
- const app = express();
+const PORT = 3002;
 
- //listen for request
- app.listen(3001)
- console.log('listening for request on port 3001');
+// serve static files (optional)
+app.use(express.static(path.join(__dirname, 'mpn')));
 
- app.get('/', (req, res) => {
+// home route
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'mpn', 'index.html'));
+});
 
-    res.send('<h1>home page</h1>');
- });
+// about route
+app.get('/about', (req, res) => {
+  res.sendFile(path.join(__dirname, 'mpn', 'about.html'));
+});
+
+// redirect route
+app.get('/about-us', (req, res) => {
+  res.redirect('/about');
+});
+
+// start server
+app.listen(PORT, () => {
+  console.log(`Listening for requests on port ${PORT}`);
+});
+
+
